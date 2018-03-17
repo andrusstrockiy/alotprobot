@@ -53,7 +53,7 @@ def main():
     dsp.add_handler(MessageHandler(Filters.all, echo))
 
     dsp.add_handler(CallbackQueryHandler(help_main_menu, pattern="help_main_menu"))
-    dsp.add_handler(CallbackQueryHandler(start,pattern='help_back'))
+    dsp.add_handler(CallbackQueryHandler(help_main_menu, pattern='help_back'))
     dsp.add_handler(CallbackQueryHandler(button,pass_update_queue=True,
                                          pass_user_data=True,
                                          ))

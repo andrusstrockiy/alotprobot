@@ -21,9 +21,8 @@ APIKEY = config['KEYS']['bot_apikey']
 def start(bot: Bot, update: Update):
     logger.info("Bot started")
     logger.info("Api key %s" % APIKEY)
-    if update.message.chat_id is None:
-        bot.sendContact(chat_id=)
-    bot.sendChatAction(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+    # update.message.chat.send_action(ChatAction.TYPING)
+    # bot.sendChatAction(chat_id=update.message.chat_id, action=ChatAction.TYPING)
     sleep(0.2)
     keyboard = [[InlineKeyboardButton("SetFilters", callback_data='filters'),
                  InlineKeyboardButton("Help", callback_data='help_main_menu')],
