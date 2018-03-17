@@ -9,7 +9,8 @@ __pycache__/
 *.ini
 # Database
 *.db
-
+# Pycharm
+*.idea
 # Distribution / packaging
 .Python
 env/
