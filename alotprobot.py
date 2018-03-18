@@ -54,7 +54,7 @@ def main():
 
     dsp.add_handler(CallbackQueryHandler(help_main_menu, pattern="help_main_menu"))
     dsp.add_handler(CallbackQueryHandler(help_main_menu, pattern='help_back'))
-    dsp.add_handler(CallbackQueryHandler(button,pass_update_queue=True,
+    dsp.add_handler(CallbackQueryHandler(button, pass_update_queue=True,
                                          pass_user_data=True,
                                          ))
 
@@ -88,7 +88,14 @@ def main():
 
     updater.dispatcher.add_error_handler(error)
     # Start the Bot
-    updater.start_polling(timeout=30,poll_interval=4)
+    webhook = config['WEBHOOK']
+
+    if webhook:
+        updater.start_webhook(listen=webhook['listen'], port=webhook['port'], url_path=APIKEY)
+        updater.bot.set_webhook(webhook_url=webhook['url'] + '/' + APIKEY,
+                                certificate=open(webhook['certificate'], 'rb'))
+    else:
+        updater.start_polling(timeout=30, poll_interval=4)
     # Run the bot until the user presses Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT
     updater.idle()
